@@ -28,8 +28,10 @@ class _DicePageState extends State<DicePage> {
   int rightDiceNumber = 1;
 
   void rollDice() {
-    leftDiceNumber = Random().nextInt(6) + 1;
-    rightDiceNumber = Random().nextInt(6) + 1;
+    setState(() {
+      leftDiceNumber = Random().nextInt(6) + 1;
+      rightDiceNumber = Random().nextInt(6) + 1;
+    });
   }
 
   @override
@@ -41,13 +43,7 @@ class _DicePageState extends State<DicePage> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextButton(
-                onPressed: () => {
-                  setState(() {
-                    rollDice();
-
-                    print('leftDiceNumber = $leftDiceNumber');
-                  }),
-                },
+                onPressed: () => rollDice(),
                 child: Image.asset('images/dice$leftDiceNumber.png'),
               ),
             ),
@@ -56,13 +52,7 @@ class _DicePageState extends State<DicePage> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextButton(
-                onPressed: () => {
-                  setState(() {
-                    rollDice();
-
-                    print('rightDiceNumber = $rightDiceNumber');
-                  }),
-                },
+                onPressed: () => rollDice(),
                 child: Image.asset('images/dice$rightDiceNumber.png'),
               ),
             ),
